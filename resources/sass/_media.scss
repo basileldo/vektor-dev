@@ -1,0 +1,33 @@
+.media {
+    @extend %el__spacing;
+    .media__image {
+        margin: 0;
+        flex: 0 0 auto;
+        &:first-child {
+            margin-bottom: 1em;
+        }
+        &:last-child {
+            margin-top: 1em;
+        }
+        .media__image__content {
+            width: 64px;
+        }
+    }
+    .media__content {
+        flex: 1 1 auto;
+    }
+}
+
+@include bps('.media__flex', $breakpoints_all) {
+    display: flex;
+    .media__image {
+        &:first-child {
+            margin-right: 1em;
+            margin-bottom: 0;
+        }
+        &:last-child {
+            margin-left: 1em;
+            margin-top: 0;
+        }
+    }
+}

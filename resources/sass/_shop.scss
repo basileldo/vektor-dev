@@ -1,0 +1,364 @@
+.price {
+    &::first-letter {
+        font-size: 50%;
+    }
+}
+
+.customer_cards_wrapper {
+    @extend %el__spacing;
+    @include scroll_x;
+    display: flex;
+    padding-bottom: 15px;
+    scroll-snap-type: x mandatory;
+    .field__wrapper--card & {
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+}
+
+.customer_card {
+    cursor: pointer;
+    scroll-snap-align: start;
+    flex: 0 0 300px;
+    width: 300px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    position: relative;
+    &:last-child {
+        padding-right: 20px;
+    }
+    .customer_card__inner {
+        transition: 0.3s box-shadow ease, 0.3s border-color ease;
+        box-shadow: 0 10px 16px -10px rgba(color('black'), 0.2);
+        border-width: 2px;
+        border-style: solid;
+        border-radius: $rounded;
+        padding: 10px;
+        position: relative;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-repeat: no-repeat;
+        background-position: bottom 20px left 20px, center;
+        @include css4 {
+            background-color: var(--color_background);
+            border-color: var(--color_border);
+        }
+        .customer_card__dismiss {
+            @extend %overlay__dismiss;
+            padding: 0.9em;
+            svg {
+                width: 12px;
+                height: 12px;
+            }
+            .customer_card__dismiss__icon {
+                fill: darken(color('white'), 15);
+                transition: fill .3s ease;
+            }
+            &:hover {
+                .customer_card__dismiss__icon {
+                    fill: darken(color('white'), 20);
+                }
+            }
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            background-repeat: no-repeat;
+            background-image: url("../assets/img/icons/icon__checkbox--dark.svg");
+            background-position: center;
+            background-size: cover;
+            left: 20px;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            opacity: 0;
+            transition: 0.3s opacity ease;
+        }
+    }
+    &.is_selected {
+        .customer_card__inner {
+            border-color: #8E8E8E;
+            box-shadow: 0 10px 16px -10px rgba(color('black'), 0.4), inset 0 0 0 1px rgba(color('black'), 0.5);
+            &::after {
+                opacity: 1;
+            }
+        }
+    }
+    &.amex {
+        .customer_card__inner {
+            background-image: url("../assets/img/icons/payment/amex.svg");
+        }
+    }
+    &.diners {
+        .customer_card__inner {
+            background-image: url("../assets/img/icons/payment/diners.svg");
+        }
+    }
+    &.discover {
+        .customer_card__inner {
+            background-image: url("../assets/img/icons/payment/discover.svg");
+        }
+    }
+    &.jcb {
+        .customer_card__inner {
+            background-image: url("../assets/img/icons/payment/jcb.svg");
+        }
+    }
+    &.maestro {
+        .customer_card__inner {
+            background-image: url("../assets/img/icons/payment/maestro.svg");
+        }
+    }
+    &.mastercard {
+        .customer_card__inner {
+            background-image: url("../assets/img/icons/payment/mastercard.svg");
+        }
+    }
+    &.unionpay {
+        .customer_card__inner {
+            background-image: url("../assets/img/icons/payment/unionpay.svg");
+        }
+    }
+    &.visa {
+        .customer_card__inner {
+            background-image: url("../assets/img/icons/payment/visa.svg");
+        }
+    }
+    .customer_card__expiry {
+        @extend %no_select;
+        position: absolute;
+        font-size: 0.8em;
+        right: 20px;
+        bottom: 20px;
+    }
+    .customer_card__number {
+        @extend %no_select;
+        font-family: monospace;
+        font-size: 1.2em;
+    }
+}
+
+.products {
+    display: grid;
+    gap: 0.6rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    @include cbp(920px) {
+        gap: 30px;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.products > .product {
+    box-shadow: 0 10px 20px -10px rgba(color('black'), 0.15);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: $rounded;
+    overflow: hidden;
+    @include css4 {
+        border-color: var(--color_border);
+    }
+    & > a {
+        text-decoration: none;
+        color: currentColor;
+        font-weight: inherit;
+    }
+    .modal__overlay .modal__dialog {
+        @include bp(3) {
+            max-width: 700px;
+        }
+        .modal__content, .spinner__wrapper {
+            border-top-left-radius: $rounded;
+            border-top-right-radius: $rounded;
+        }
+        .variations .field__wrapper, .field__wrapper--number {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            align-items: center;
+            .field__title {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.product {
+    .variations .field__wrapper, .field__wrapper--number {
+        .field__title {
+            text-transform: none;
+            @include css4 {
+                color: var(--color_border);
+            }
+        }
+    }
+    .variations-center\:1t2e {
+        .field__wrapper {
+            .field__title {
+                @include bp('1t2e') {
+                    text-align: center;
+                }
+            }
+            .field__collection {
+                @include bp('1t2e') {
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}
+
+.cart {
+    @include bp('1t2e') {
+        font-size: .875rem;
+        line-height: 1.25rem;
+    }
+}
+
+.cart-item {
+    @extend %el__spacing;
+    position: relative;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 50px 1fr;
+    padding: 1em;
+    box-shadow: 0 5px 8px rgba(color('black'), 0.05);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: $rounded;
+    @include css4 {
+        border-color: var(--color_border);
+    }
+    @include bp(2) {
+        align-items: center;
+        grid-template-columns: 100px 1fr;
+        padding: 20px;
+    }
+    @include bp(3) {
+        gap: 2rem;
+    }
+    .item-content {
+        display: grid;
+        align-items: center;
+        gap: 0.6rem;
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        @include bp(2) {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        .item-delete {
+            @include bp('1t2e') {
+                position: absolute;
+            }
+            @include bp('1e') {
+                top: 10px;
+                right: 10px;
+                font-size: .7rem;
+            }
+            @include bp('2e') {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    }
+}
+
+.shipping_methods {
+    display: grid;
+    gap: 0.6rem;
+    @include bp(3) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include bp(4) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .shipping_method {
+        border-radius: $rounded;
+        cursor: pointer;
+        position: relative;
+        font-size: 0.9em;
+        padding: 20px 20px 20px 50px;
+        border-width: 1px;
+        border-style: solid;
+        display: grid;
+        grid-template-columns: 1fr max-content;
+        gap: 0.6rem;
+        transition: .3s background-color ease, .3s border-color ease, .3s color ease, .3s opacity ease;
+        @include css4 {
+            border-color: var(--color_border);
+            background-color: var(--color_background);
+        }
+        &[disabled="true"] {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        &::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 20px;
+            height: 20px;
+            background-repeat: no-repeat;
+            background-size: 12px;
+            background-image: url("../assets/img/icons/icon__checkbox--light.svg");
+            background-position: -60px;
+            transition: .3s background-color ease, .3s border-color ease;
+            border-width: 1px;
+            border-style: solid;
+            @include css4 {
+                background-color: var(--color_background);
+                border-color: var(--color_border);
+            }
+        }
+        &.is_selected {
+            @include css4 {
+                background-color: var(--color_background__field);
+                border-color: var(--color_border);
+            }
+            &::before {
+                background-position: center center;
+                @include css4 {
+                    color: var(--color_primary_contrasting);
+                    background-color: var(--color_primary_light);
+                    border-color: var(--color_primary_dark);
+                }
+            }
+            &[disabled="true"] {
+                @include css4 {
+                    background-color: var(--color_background);
+                    border-color: var(--color_border);
+                }
+                &::before {
+                    @include css4 {
+                        background-color: var(--color_background);
+                        border-color: var(--color_border);
+                    }
+                }
+            }
+        }
+        .method_content {
+            header {
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-bottom: 5px;
+                &:only-child {
+                    margin-bottom: 0;
+                }
+            }
+            span {
+                display: inline-block;
+                line-height: 1;
+                pointer-events: none;
+                a {
+                    pointer-events: all;
+                }
+            }
+        }
+        .method_price {
+            span {
+                font-weight: bold;
+            }
+        }
+    }
+}

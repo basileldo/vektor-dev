@@ -1,0 +1,7 @@
+@include apply_color_to_property('bg', 'background-color');
+
+.bg-image {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}

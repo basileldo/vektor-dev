@@ -1,0 +1,98 @@
+:root {
+    --swiper-theme-color: var(--color_secondary);
+    --swiper-pagination-bullet-inactive-color: var(--color_border);
+    --swiper-pagination-bullet-inactive-opacity: 1;
+    --swiper-pagination-top: 0;
+    --swiper-pagination-bottom: 0;
+    --swiper-pagination-bullet-width: 10px;
+    --swiper-pagination-bullet-height: 10px;
+    --swiper-pagination-bullet-horizontal-gap: 6px;
+}
+
+.swiper-pagination {
+    position: relative;
+    margin-top: 1rem;
+    line-height: 0;
+}
+
+.pagination {
+    margin-top: 30px;
+    padding-top: 15px;
+    position: relative;
+    text-align: center;
+    display: grid;
+    gap: 10px;
+    justify-content: center;
+    border-top-width: 1px;
+    border-top-style: solid;
+    @include css4 {
+        border-top-color: var(--color_border);
+        background-color: var(--color_background);
+        border-color: var(--color_border);
+    }
+    @include cbp(500px) {
+        grid-template-columns: max-content max-content;
+        justify-content: space-between;
+
+    }
+    .pagination__pages {
+        height: 34px;
+        line-height: 34px;
+        ul, li {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            display: flex;
+            align-items: center;
+            gap: 0 10px;
+        }
+        li {
+            display: flex;
+            align-items: center;
+            gap: 0 10px;
+            a {
+                height: 34px;
+                line-height: 34px;
+                display: block;
+                padding: 0 10px;
+                border-width: 1px;
+                border-style: solid;
+                transition: background-color .3s ease;
+                background-color: transparent;
+                text-decoration: none;
+                @include css4 {
+                    border-color: var(--color_border);
+                }
+                &:hover {
+                    @include css4 {
+                        background-color: var(--color_background__field);
+                    }
+                }
+            }
+        }
+        select {
+            width: 70px;
+            padding: 0 10px;
+            height: 34px;
+            line-height: 34px;
+            min-height: 34px;
+        }
+    }
+    .pagination__per_page {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0 10px;
+        select {
+            width: 70px;
+            padding: 0 10px;
+            height: 34px;
+            line-height: 34px;
+            min-height: 34px;
+        }
+        span {
+            display: block;
+        }
+    }
+}

@@ -1,0 +1,105 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.1",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel/framework": "^10.0",
+        "laravel/tinker": "^2.8",
+        "laravel/ui": "^4.2",
+        "league/flysystem-aws-s3-v3": "^3.0",
+        "vektor/account": "dev-main",
+        "vektor/api": "dev-main",
+        "vektor/cash": "dev-main",
+        "vektor/checkout": "dev-main",
+        "vektor/onecrm": "dev-main",
+        "vektor/stripe": "dev-main",
+        "vektor/utilities": "dev-main"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.9.1",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^6.3",
+        "phpunit/phpunit": "^9.5.10",
+        "spatie/laravel-ignition": "^2.0"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ]
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./packages/vektor/api"
+        },
+        {
+            "type": "path",
+            "url": "./packages/vektor/checkout"
+        },
+        {
+            "type": "path",
+            "url": "./packages/vektor/onecrm"
+        },
+        {
+            "type": "path",
+            "url": "./packages/vektor/payment_account"
+        },
+        {
+            "type": "path",
+            "url": "./packages/vektor/payment_cash"
+        },
+        {
+            "type": "path",
+            "url": "./packages/vektor/payment_paypal"
+        },
+        {
+            "type": "path",
+            "url": "./packages/vektor/payment_stripe"
+        },
+        {
+            "type": "path",
+            "url": "./packages/vektor/utilities"
+        }
+    ]
+}

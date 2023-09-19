@@ -1,0 +1,24 @@
+@include apply_color_to_property('border', 'border-color');
+
+@include bps('.rounded-none') {  border-radius: 0; }
+@include bps('.rounded') {  border-radius: $rounded; }
+@include bps('.rounded-t') {  border-top-left-radius: $rounded; border-top-right-radius: $rounded; }
+@include bps('.rounded-r') {  border-top-right-radius: $rounded; border-bottom-right-radius: $rounded; }
+@include bps('.rounded-b') {  border-bottom-left-radius: $rounded; border-bottom-right-radius: $rounded; }
+@include bps('.rounded-l') {  border-top-left-radius: $rounded; border-bottom-left-radius: $rounded; }
+@include bps('.rounded-full') {  border-radius: $infinity; }
+
+@include bps('.border-0') {  border-width: 0; }
+@include bps('.border') {  border-width: 1px; }
+@include bps('.border-x-0') {  border-left-width: 0; border-right-width: 0; }
+@include bps('.border-x') {  border-left-width: 1px; border-right-width: 1px; }
+@include bps('.border-y-0') {  border-top-width: 0; border-bottom-width: 0; }
+@include bps('.border-y') {  border-top-width: 1px; border-bottom-width: 1px; }
+@include bps('.border-t-0') {  border-top-width: 0; }
+@include bps('.border-t') {  border-top-width: 1px; }
+@include bps('.border-r-0') {  border-right-width: 0; }
+@include bps('.border-r') {  border-right-width: 1px; }
+@include bps('.border-b-0') {  border-bottom-width: 0; }
+@include bps('.border-b') {  border-bottom-width: 1px; }
+@include bps('.border-l-0') {  border-left-width: 0; }
+@include bps('.border-l') {  border-left-width: 1px; }

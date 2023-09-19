@@ -1,0 +1,35 @@
+@include bps('.flex-row') { flex-direction: row; }
+@include bps('.flex-row-reverse') { flex-direction: row-reverse; }
+@include bps('.flex-col') { flex-direction: column; }
+@include bps('.flex-col-reverse') { flex-direction: column-reverse; }
+
+@include bps('.flex-wrap') { flex-wrap: wrap; }
+@include bps('.flex-wrap-reverse') { flex-wrap: wrap-reverse; }
+@include bps('.flex-nowrap') { flex-wrap: nowrap; }
+
+@include bps('.flex-1') { flex: 1 1 0%; }
+@include bps('.flex-auto') { flex: 1 1 auto; }
+@include bps('.flex-initial') { flex: 0 1 auto; }
+@include bps('.flex-none') { flex: none; }
+
+@include bps('.flex-grow-0') { flex-grow: 0; }
+@include bps('.flex-grow') { flex-grow: 1; }
+
+@include bps('.flex-shrink-0') { flex-shrink: 0; }
+@include bps('.flex-shrink') { flex-shrink: 1; }
+
+@include bps('.order-1') { order: 1;}
+@include bps('.order-2') { order: 2;}
+@include bps('.order-3') { order: 3;}
+@include bps('.order-4') { order: 4;}
+@include bps('.order-5') { order: 5;}
+@include bps('.order-6') { order: 6;}
+@include bps('.order-7') { order: 7;}
+@include bps('.order-8') { order: 8;}
+@include bps('.order-9') { order: 9;}
+@include bps('.order-10') { order: 10;}
+@include bps('.order-11') { order: 11;}
+@include bps('.order-12') { order: 12;}
+@include bps('.order-first') { order: -9999;}
+@include bps('.order-last') { order: 9999;}
+@include bps('.order-none') { order: 0;}

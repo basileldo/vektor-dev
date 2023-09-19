@@ -1,0 +1,194 @@
+@use 'sass:math';
+
+@if ($css4) {
+    :root {
+        @each $variable, $value in $css_variables {
+            #{$variable}: $value;
+        }
+    }
+}
+
+@if ($css4) {
+    body {
+        transition: background-color map-get($transition_durations, 'fast') ease, color map-get($transition_durations, 'fast') ease, border-color map-get($transition_durations, 'fast') ease;
+    }
+    body.is_dark {
+        @each $variable, $value in $css_variables_dark {
+            #{$variable}: $value;
+        }
+    }
+}
+
+@function var($variable) {
+    @if ($css4) {
+        @return unquote('var(' + $variable + ')');
+    } @else {
+        @return map-get($css_variables, $variable);
+    }
+}
+
+@mixin css4 {
+    @if ($css4) {
+        $css4-backup: $css4;
+        @if ($css_variable_compatibility) {
+            $css4: false !global;
+            @content;
+        }
+        $css4: true !global;
+        @content;
+        $css4: $css4-backup;
+    } @else {
+        @content;
+    }
+}
+
+@mixin bp($size) {
+    $size: $size + '';
+    @if map_has_key($breakpoints, $size) {
+        $media_query: map-get($breakpoints, $size);
+        @if (map-get($media_query, 'min_width') == null) {
+            @media (max-width: #{map-get($media_query, 'max_width')}) { @content; }
+        } @else if (map-get($media_query, 'max_width') == null) {
+            @media (min-width: #{map-get($media_query, 'min_width')}) { @content; }
+        } @else {
+            @media (min-width: #{map-get($media_query, 'min_width')}) and (max-width: #{map-get($media_query, 'max_width')}) { @content; }
+        }
+    }
+}
+
+@mixin bpso($selector, $include: null, $state: null) {
+    @each $breakpoint_name, $breakpoint in $breakpoints {
+        @if ($include == null or ($include != null and index($include, $breakpoint_name) != null)) {
+            #{$selector}\:#{$breakpoint_name}#{$state} {
+                @include bp($breakpoint_name) {
+                    @content;
+                }
+            }
+        }
+    }
+}
+
+@mixin bps($selector, $include: null, $state: null) {
+    #{$selector}#{$state} {
+        @content;
+    }
+    @each $breakpoint_name, $breakpoint in $breakpoints {
+        @if ($include == null or ($include != null and index($include, $breakpoint_name) != null)) {
+            #{$selector}\:#{$breakpoint_name}#{$state} {
+                @include bp($breakpoint_name) {
+                    @content;
+                }
+            }
+        }
+    }
+}
+
+@mixin cbp($min_width: null, $max_width: null) {
+    @if ($min_width == null) {
+        @media (max-width: #{$max_width}) { @content }
+    } @else if ($max_width == null) {
+        @media (min-width: #{$min_width}) { @content }
+    } @else {
+        @media (min-width: #{$min_width}) and (max-width: #{$max_width}) { @content }
+    }
+}
+
+@mixin scroll_x {
+    overflow-y: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@mixin scroll_y {
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+@mixin clearfix {
+    *zoom: 1;
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+%no_select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+%el__spacing {
+    margin-top: 0;
+    margin-bottom: map-get($spacings, '4');
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+%el__spacing--collection {
+    margin-top: -.3em;
+    margin-bottom: math.div(map-get($spacings, '4'), 2);
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+%el__spacing--item {
+    margin-bottom: math.div(map-get($spacings, '4'), 2);
+    margin-right: map-get($spacings, '4');
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+body.overlay--is_open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+%overlay {
+    cursor: pointer;
+    left: -100%;
+    top: 0;
+    right: 100%;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    outline: 0;
+    position: fixed;
+    background-color: rgba(color('black'), 0.8);
+    display: flex;
+    opacity: 0;
+    z-index: 103;
+    transition: left 0s .8s, right 0s .8s, opacity .5s .3s ease;
+    perspective: 100px;
+    pointer-events: none;
+    body.overlay--is_open & {
+        @include scroll_y;
+    }
+    &.is_open {
+        left: 0;
+        right: 0;
+        opacity: 1;
+        transition: left 0s, right 0s, opacity .5s ease;
+        pointer-events: initial;
+    }
+}
+
+%overlay__dismiss {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    padding: 1.5em;
+    z-index: 1;
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}

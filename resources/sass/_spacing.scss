@@ -1,0 +1,51 @@
+$spacing_types: (
+    'p': 'padding',
+    'm': 'margin',
+    '-m': 'margin',
+);
+
+@each $spacing_type__abv, $spacing_type in $spacing_types {
+    $areas: (
+        '': ('#{$spacing_type}'),
+        'x': ('#{$spacing_type}-left', '#{$spacing_type}-right'),
+        'y': ('#{$spacing_type}-top', '#{$spacing_type}-bottom'),
+        't': ('#{$spacing_type}-top'),
+        'r': ('#{$spacing_type}-right'),
+        'b': ('#{$spacing_type}-bottom'),
+        'l': ('#{$spacing_type}-left'),
+    );
+    @each $area__name, $area in $areas {
+        @each $spacing_name, $spacing_size in $spacings {
+            .#{$spacing_type__abv}#{$area__name}-#{$spacing_name} {
+                @each $area__prop in $area {
+                    @if ($spacing_type__abv == '-m') {
+                        #{$area__prop}: $spacing_size * -1;
+                    } @else {
+                        #{$area__prop}: $spacing_size;
+                    }
+                }
+            }
+        }
+    }
+    @each $area__name, $area in $areas {
+        @each $spacing_name, $spacing_size in $spacings {
+            @include bpso('.#{$spacing_type__abv}#{$area__name}-#{$spacing_name}') {
+                @each $area__prop in $area {
+                    @if ($spacing_type__abv == '-m') {
+                        #{$area__prop}: $spacing_size * -1;
+                    } @else {
+                        #{$area__prop}: $spacing_size;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include bps('.m-auto') { margin: auto; }
+@include bps('.mx-auto') { margin-left: auto; margin-right: auto; }
+@include bps('.my-auto') { margin-top: auto; margin-bottom: auto; }
+@include bps('.mt-auto') { margin-top: auto; }
+@include bps('.mr-auto') { margin-right: auto; }
+@include bps('.mb-auto') { margin-bottom: auto; }
+@include bps('.ml-auto') { margin-left: auto; }

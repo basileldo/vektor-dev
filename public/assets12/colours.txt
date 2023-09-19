@@ -1,0 +1,5 @@
+Light Grey - #DDDDDD
+Green - #9BC037
+Watermark Footer Green - #ACC941
+Dark Grey - #32373C
+Gradient - just black to black transparency

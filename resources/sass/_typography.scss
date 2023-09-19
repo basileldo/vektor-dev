@@ -1,0 +1,376 @@
+@use 'sass:math';
+
+body {
+    margin: 0;
+    font-family: Lato, sans-serif;
+    font-size: 16px;
+    line-height: normal;
+    @include css4 {
+        background-color: var(--color_background);
+        color: var(--color_text);
+    }
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+    display: block;
+    @extend %el__spacing;
+    font-weight: normal;
+}
+
+h1, .h1 {
+    font-size: 2em;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    @include bp($breakpoint--lg) {
+        font-size: 2.4em;
+    }
+}
+
+h2, .h2 {
+    font-size: 1.7em;
+    font-weight: 600;
+    @include bp($breakpoint--lg) {
+        font-size: 2em;
+    }
+}
+
+h3, .h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+    @include bp($breakpoint--lg) {
+        font-size: 1.55em;
+    }
+}
+
+h4, .h4 {
+    font-size: 1.4em;
+    @include bp($breakpoint--lg) {
+        font-size: 1.45em;
+    }
+}
+
+h5, .h5 {
+    font-size: 1.2em;
+    @include bp($breakpoint--lg) {
+        font-size: 1.3em;
+    }
+}
+
+h6, .h6 {
+    font-size: 1,1em;
+    @include bp($breakpoint--lg) {
+        font-size: 1.2em;
+    }
+}
+
+p {
+    @extend %el__spacing;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: underline;
+    cursor: pointer;
+    color: currentColor;
+}
+
+ul, ol {
+    @extend %el__spacing;
+    padding: 0;
+    line-height: 1.5;
+    list-style: none;
+}
+
+li {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: math.div(map-get($spacings, '4'), 2);
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+blockquote {
+    margin-left: map-get($spacings, '4');
+    margin-right: 0;
+    border-left-width: 5px;
+    border-left-style: solid;
+    padding: 5px 0 5px 15px;
+    font-size: 1.1em;
+    @include css4 {
+        border-left-color: var(--color_background__accent);
+    }
+    @extend %el__spacing;
+    @include bp($breakpoint--lg) {
+        margin-left: map-get($spacings, '4')*2;
+        margin-top: map-get($spacings, '4')*2;
+        margin-bottom: map-get($spacings, '4')*2;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    cite {
+        margin-top: 0.5em;
+        font-size: 0.9em;
+        display: block;
+        font-style: italic;
+        &::before {
+            content: '-';
+            margin-right: 5px;
+        }
+    }
+}
+
+.alignleft {
+    @include bp(3) {
+        float: left;
+        margin-right: 3rem;
+    }
+}
+
+.alignright {
+    @include bp(3) {
+        float: right;
+        margin-left: 3rem;
+    }
+}
+
+.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img.alignleft {
+    @include bp(3) {
+        margin-top: 0;
+        margin-left: 0;
+    }
+
+    @include bp(4) {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+img.alignright {
+    @include bp(3) {
+        margin-top: 0;
+        margin-right: 0;
+    }
+    @include bp(4) {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        &:first-child {
+            margin-top: 0;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+img.aligncenter {
+    @include bp(4) {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.article {
+    ul {
+        overflow: auto;
+    }
+    img {
+        @extend %el__spacing;
+    }
+    &.article--overflow {
+        img.alignleft {
+            @include bp(3) {
+                margin-right: 2rem;
+            }
+            @include bp(4) {
+                margin-left: -3rem;
+                margin-right: 2.6rem;
+                margin-top: 1.6rem;
+                margin-bottom: 1.6rem;
+                &:first-child {
+                    margin-top: 0;
+                }
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+        img.alignright {
+            @include bp(3) {
+                margin-left: 2rem;
+            }
+            @include bp(4) {
+                margin-left: 2.6rem;
+                margin-right: -3rem;
+                margin-top: 1.6rem;
+                margin-bottom: 1.6rem;
+                &:first-child {
+                    margin-top: 0;
+                }
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+        img.aligncenter {
+            @include bp(4) {
+                margin-top: 1.6rem;
+                margin-bottom: 1.6rem;
+            }
+        }
+    }
+}
+
+.metadata__collection {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    @extend %el__spacing;
+    .metadata__item {
+        padding-right: 0.7em;
+        margin-right: 0.7em;
+        border-right-width: 1px;
+        border-right-style: solid;
+        @include css4 {
+            border-right-color: var(--color_background__accent);
+        }
+        &:last-child {
+            padding-right: 0;
+            margin-right: 0;
+            border-right-width: 0;
+        }
+    }
+}
+
+@supports ((background-clip: text) or (-webkit-background-clip: text)) and ((text-fill-color: transparent) or (-webkit-text-fill-color: transparent)) {
+    .text-gradient {
+        background-clip: text;
+        -webkit-background-clip: text;
+        text-fill-color: transparent;
+        -webkit-text-fill-color: transparent;
+        background-size: cover;
+        display: inline-block;
+        @include css4 {
+            background-image: linear-gradient(to right, var(--color_primary), var(--color_secondary) 60%);
+        }
+    }
+}
+
+@include bps('.text-xs') { font-size: 0.75rem; line-height: 1rem; }
+@include bps('.text-sm') { font-size: 0.875rem; line-height: 1.25rem; }
+@include bps('.text-base') { font-size: 1rem; line-height: 1.5rem; }
+@include bps('.text-lg') { font-size: 1.125rem; line-height: 1.75rem; }
+@include bps('.text-xl') { font-size: 1.25rem; line-height: 1.75rem; }
+@include bps('.text-2xl') { font-size: 1.5rem; line-height: 2rem; }
+@include bps('.text-3xl') { font-size: 1.875rem; line-height: 2.25rem; }
+@include bps('.text-4xl') { font-size: 2.25rem; line-height: 2.5rem; }
+@include bps('.text-5xl') { font-size: 3rem; line-height: 1; }
+@include bps('.text-6xl') { font-size: 3.75rem; line-height: 1; }
+@include bps('.text-7xl') { font-size: 4.5rem; line-height: 1; }
+@include bps('.text-8xl') { font-size: 6rem; line-height: 1; }
+@include bps('.text-9xl') { font-size: 8rem; line-height: 1; }
+
+@include bps('.italic') { font-style: italic; }
+@include bps('.not-italic') { font-style: normal; }
+
+@include bps('.font-thin') { font-weight: 100; }
+@include bps('.font-extralight') { font-weight: 200; }
+@include bps('.font-light') { font-weight: 300; }
+@include bps('.font-normal') { font-weight: 400; }
+@include bps('.font-medium') { font-weight: 500; }
+@include bps('.font-semibold') { font-weight: 600; }
+@include bps('.font-bold') { font-weight: 700; }
+@include bps('.font-extrabold') { font-weight: 800; }
+@include bps('.font-black') { font-weight: 900; }
+
+@include bps('.normal-nums') { font-variant-numeric: normal; }
+@include bps('.ordinal') { font-variant-numeric: ordinal; }
+@include bps('.slashed-zero') { font-variant-numeric: slashed-zero; }
+@include bps('.lining-nums') { font-variant-numeric: lining-nums; }
+@include bps('.oldstyle-nums') { font-variant-numeric: oldstyle-nums; }
+@include bps('.proportional-nums') { font-variant-numeric: proportional-nums; }
+@include bps('.tabular-nums') { font-variant-numeric: tabular-nums; }
+@include bps('.diagonal-fractions') { font-variant-numeric: diagonal-fractions; }
+@include bps('.stacked-fractions') { font-variant-numeric: stacked-fractions; }
+
+@include bps('.tracking-tighter') { letter-spacing: -0.05em; }
+@include bps('.tracking-tight') { letter-spacing: -0.025em; }
+@include bps('.tracking-normal') { letter-spacing: 0em; }
+@include bps('.tracking-wide') { letter-spacing: 0.025em; }
+@include bps('.tracking-wider') { letter-spacing: 0.05em; }
+@include bps('.tracking-widest') { letter-spacing: 0.1em; }
+
+@include bps('.leading-3') { line-height: .75rem; }
+@include bps('.leading-4') { line-height: 1rem; }
+@include bps('.leading-5') { line-height: 1.25rem; }
+@include bps('.leading-6') { line-height: 1.5rem; }
+@include bps('.leading-7') { line-height: 1.75rem; }
+@include bps('.leading-8') { line-height: 2rem; }
+@include bps('.leading-9') { line-height: 2.25rem; }
+@include bps('.leading-10') { line-height: 2.5rem; }
+@include bps('.leading-none') { line-height: 1; }
+@include bps('.leading-tight') { line-height: 1.25; }
+@include bps('.leading-snug') { line-height: 1.375; }
+@include bps('.leading-normal') { line-height: 1.5; }
+@include bps('.leading-relaxed') { line-height: 1.625; }
+@include bps('.leading-loose') { line-height: 2; }
+
+@include bps('.list-none') { list-style-type: none; }
+@include bps('.list-disc') { list-style-type: disc; }
+@include bps('.list-decimal') { list-style-type: decimal; }
+
+@include bps('.list-inside') { list-style-position: inside; }
+@include bps('.list-outside') { list-style-position: outside; }
+
+@include bps('.text-left') { text-align: left; }
+@include bps('.text-center') { text-align: center; }
+@include bps('.text-right') { text-align: right; }
+@include bps('.text-justify') { text-align: justify; }
+
+@include apply_color_to_property('text', 'color');
+
+@include bps('.underline') { text-decoration: underline; }
+@include bps('.line-through') { text-decoration: line-through; }
+@include bps('.no-underline') { text-decoration: none; }
+
+@include bps('.uppercase') { text-transform: uppercase; }
+@include bps('.lowercase') { text-transform: lowercase; }
+@include bps('.capitalize') { text-transform: capitalize; }
+@include bps('.normal-case') { text-transform: none; }
+
+@include bps('.truncate') { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@include bps('.overflow-ellipsis') { text-overflow: ellipsis; }
+@include bps('.overflow-clip') { text-overflow: clip; }
+
+@include bps('.align-baseline') { vertical-align: baseline; }
+@include bps('.align-top') { vertical-align: top; }
+@include bps('.align-middle') { vertical-align: middle; }
+@include bps('.align-bottom') { vertical-align: bottom; }
+@include bps('.align-text-top') { vertical-align: text-top; }
+@include bps('.align-text-bottom') { vertical-align: text-bottom; }
+
+@include bps('.whitespace-normal') { white-space: normal; }
+@include bps('.whitespace-nowrap') { white-space: nowrap; }
+@include bps('.whitespace-pre') { white-space: pre; }
+@include bps('.whitespace-pre-line') { white-space: pre-line; }
+@include bps('.whitespace-pre-wrap') { white-space: pre-wrap; }
+
+@include bps('.break-normal') { overflow-wrap: normal; word-break: normal; }
+@include bps('.break-words') { overflow-wrap: break-word; }
+@include bps('.break-all') { word-break: break-all; }

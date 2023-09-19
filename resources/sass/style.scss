@@ -1,0 +1,71 @@
+/*!
+Theme Name: Project Name
+Theme URI: http://vektor.co.uk
+Author: vektor
+Author URI: http://vektor.co.uk
+Description: Project Name's custom theme
+Version: 1.0
+License: GNU General Public License
+*/
+
+@import 'colors';
+@import 'variables';
+@import 'utilities';
+@import 'base';
+
+@import 'layout';
+
+@import 'buttons';
+
+@import 'flexbox';
+@import 'grid';
+@import 'box_alignment';
+@import 'media';
+@import 'svg';
+
+@import 'typography';
+
+@import 'backgrounds';
+@import 'borders';
+@import 'effects';
+
+@import 'pagination';
+@import 'form';
+@import 'slider';
+@import 'navigation';
+@import 'modal';
+@import 'search';
+@import 'table';
+@import 'tab';
+@import 'messages';
+@import 'map';
+@import 'cookies';
+@import 'shop';
+
+@import 'spacing';
+@import 'sizing';
+
+@import 'swiper';
+
+// :root {
+// 	--color_header_background: #1B1E27;
+// 	--color_header_border: #262A36;
+// 	--color_header_text: #A6B9BE;
+// 	--color_icon: #A6B9BE;
+// 	/*--color_primary: #2F2F2F;
+// 	--color_primary_dark: #252525;
+// 	--color_primary_light: #555555;
+// 	--color_primary_contrasting: #EEEEEE;
+// 	--color_secondary: #2F2F2F;
+// 	--color_secondary_dark: #252525;
+// 	--color_secondary_light: #555555;
+// 	--color_secondary_contrasting: #EEEEEE;*/
+// 	--color_background: #161922;
+//     --color_background_contrasting: #A6B9BE;
+//     --color_background__field: #374151;
+//     --color_background__accent: #4B5563;
+//     --color_border: #656b7b;
+//     --color_text: #A6B9BE;
+// }
+
+@import 'print';

@@ -1,0 +1,93 @@
+.cookie_consent_wrapper {
+
+	& > .cookie_consent_wrapper {
+		display: none;
+	}
+
+	&.open {
+		& > .cookie_consent_wrapper {
+			display: block;
+		}
+		& > header .label::before {
+			transform: translateY(-50%) rotate(315deg);
+		}
+	}
+
+	.label {
+		position: relative;
+		&::before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			height: 0.5em;
+			width: 0.5em;
+			border: 1px solid black;
+			border-width: 0.15em 0.15em 0 0;
+			transform: translateY(-50%) rotate(135deg);
+		}
+	}
+
+	&.type {
+		.label {
+			&::before {
+				left: -0.9em;
+			}
+		}
+	}
+
+	&.provider {
+		border: 1px solid var(--color_border);
+		border-radius: 5px;
+		padding: 0.5em 1em;
+
+		.label {
+			&::before {
+				right: 0;
+			}
+		}
+	}
+}
+
+.consent__cookies {
+    padding: 20px 30px;
+    position: fixed;
+    top: 100%;
+    left: -100%;
+    right: 100%;
+    z-index: 99999;
+    overflow: hidden;
+    font-size: 0.9em;
+    transform: translateY(0);
+    transition: left 0s .4s, right 0s .4s, map-get($transition_durations, 'fast') transform $transition_easing;
+    @include css4 {
+        background-color: var(--color_secondary);
+        color: var(--color_secondary_contrasting);
+    }
+
+    @include bp(3) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1em;
+    }
+
+    &.is_visible {
+        left: 0;
+        right: 0;
+        transform: translateY(-100%);
+        transition: left 0s, right 0s, map-get($transition_durations, 'fast') transform $transition_easing;
+    }
+
+    .information {
+        margin-bottom: 10px;
+
+        @include bp(3) {
+            margin-right: 30px;
+            margin-bottom: 0;
+        }
+    }
+
+    .btn {
+        white-space: nowrap;
+    }
+}

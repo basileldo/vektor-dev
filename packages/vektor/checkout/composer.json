@@ -1,0 +1,40 @@
+{
+    "name": "vektor/checkout",
+    "description": "API",
+    "keywords": [
+        "vektor",
+        "checkout"
+    ],
+    "homepage": "https://github.com/vektor/checkout",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "David Dawes",
+            "email": "david@vektor.co.uk",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "anayarojo/shoppingcart": "^4.2",
+        "spatie/laravel-sluggable": "^3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vektor\\Checkout\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vektor\\Checkout\\CheckoutServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

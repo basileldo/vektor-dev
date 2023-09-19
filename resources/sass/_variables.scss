@@ -1,0 +1,180 @@
+$css4: true;
+$css_variable_compatibility: true;
+
+$infinity: 9999px;
+$rounded: 5px;
+
+$breakpoints: (
+    '1e': (
+        min_width: null,
+        max_width: 579px
+    ),
+    '1t2e': (
+        min_width: null,
+        max_width: 767px
+    ),
+    '2e': (
+        min_width: 580px,
+        max_width: 767px
+    ),
+    '2t3e': (
+        min_width: 580px,
+        max_width: 991px
+    ),
+    '2': (
+        min_width: 580px,
+        max_width: null
+    ),
+    '1t3e': (
+        min_width: null,
+        max_width: 991px
+    ),
+    '3e': (
+        min_width: 768px,
+        max_width: 991px
+    ),
+    '3': (
+        min_width: 768px,
+        max_width: null
+    ),
+    '4': (
+        min_width: 992px,
+        max_width: null
+    ),
+);
+
+$header_height__inner: 30px;
+$header_height__outer--sm: 60px;
+$header_height__outer--lg: 80px;
+
+$column_count: 12;
+$column_gutter: 20px;
+
+$navigation_icon__size: 20px;
+$navigation_icon__border-width: 3px;
+
+$breakpoint--sm: '1t2e';
+$breakpoint--lg: '3';
+
+$breakpoints_common: (
+    $breakpoint--sm,
+    $breakpoint--lg
+);
+
+$breakpoints_all: ();
+
+@each $breakpoint_name, $breakpoint in $breakpoints {
+    $breakpoints_all: append($breakpoints_all, $breakpoint_name);
+}
+
+$container_sizes: (
+    'sm': 640px,
+    'md': 768px,
+    'lg': 1024px,
+    'xl': 1280px,
+    '2xl': 1536px
+);
+
+$transition_durations: (
+    'fast': .3s,
+    'normal': .45s,
+    'slow': .65s
+);
+
+$transition_easing: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+
+$css_variables: (
+    --color_background: color('background'),
+    --color_background_contrasting: color('background_contrasting'),
+    --color_header_background: color('header_background'),
+    --color_header_background_contrasting: color('background_contrasting'),
+
+    --color_primary: color('primary'),
+    --color_primary_dark: color('primary_dark'),
+    --color_primary_light: color('primary_light'),
+    --color_primary_contrasting: color('primary_contrasting'),
+    --color_secondary: color('secondary'),
+    --color_secondary_dark: color('secondary_dark'),
+    --color_secondary_light: color('secondary_light'),
+    --color_secondary_contrasting: color('secondary_contrasting'),
+    --color_neutral: color('neutral'),
+    --color_neutral_contrasting: color('neutral_contrasting'),
+    --color_positive: color('positive'),
+    --color_positive_contrasting: color('positive_contrasting'),
+    --color_warning: color('warning'),
+    --color_warning_contrasting: color('warning_contrasting'),
+    --color_negative: color('negative'),
+    --color_negative_contrasting: color('negative_contrasting'),
+
+    --color_background__field: color('gray', 100),
+    --color_background__accent: color('gray', 200),
+
+    --color_border: color('gray', 300),
+    --color_header_border: color('gray', 200),
+
+    --color_icon: color('gray'),
+
+    --color_text: color('gray', 600),
+    --color_text_contrasting: color('white'),
+    --color_header_text: color('gray', 600),
+    --color_header_text_contrasting: color('white'),
+
+    --color_text__validation: color('negative'),
+
+    --selection_background: color('primary'),
+    --selection_color: color('primary_contrasting'),
+);
+
+$css_variables_dark: (
+    --color_background: color('coolGray', 800),
+    --color_header_background: color('coolGray', 800),
+
+    --color_background__field: color('coolGray', 700),
+    --color_background__accent: color('coolGray', 600),
+
+    --color_border: color('coolGray', 500),
+    --color_header_border: color('coolGray', 600),
+
+    --color_icon: color('coolGray', 300),
+
+    --color_text: color('coolGray', 300),
+    --color_header_text: color('coolGray', 300),
+);
+
+$spacings: (
+    '0': 0px,
+    'px': 1px,
+    '0\\.5': 0.125rem,
+    '1': 0.25rem,
+    '1\\.5': 0.375rem,
+    '2': 0.5rem,
+    '2\\.5': 0.625rem,
+    '3': 0.75rem,
+    '3\\.5': 0.875rem,
+    '4': 1rem,
+    '5': 1.25rem,
+    '6': 1.5rem,
+    '7': 1.75rem,
+    '8': 2rem,
+    '9': 2.25rem,
+    '10': 2.5rem,
+    '11': 2.75rem,
+    '12': 3rem,
+    '14': 3.5rem,
+    '16': 4rem,
+    '20': 5rem,
+    '24': 6rem,
+    '28': 7rem,
+    '32': 8rem,
+    '36': 9rem,
+    '40': 10rem,
+    '44': 11rem,
+    '48': 12rem,
+    '52': 13rem,
+    '56': 14rem,
+    '60': 15rem,
+    '64': 16rem,
+    '72': 18rem,
+    '80': 20rem,
+    '96': 24rem,
+);

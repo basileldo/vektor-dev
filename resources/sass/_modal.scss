@@ -1,0 +1,139 @@
+@use 'sass:math';
+
+.modal__overlay {
+    @extend %overlay;
+    .modal__inner {
+        position: relative;
+        cursor: initial;
+    }
+    &.from_top {
+        .modal__dialog {
+            padding-top: 0;
+            margin-top: 0;
+            transform: translateY(-100%);
+            @include bp('1t2e') {
+                padding-left: 0;
+                padding-right: 0;
+            }
+            @include bp(3) {
+                padding-top: 0;
+            }
+        }
+        &.is_open {
+            .modal__dialog {
+                transition: map-get($transition_durations, 'fast') math.div(map-get($transition_durations, 'fast'), 2) transform $transition_easing;
+                transform: translateY(0);
+            }
+        }
+    }
+    &.from_bottom {
+        .modal__dialog {
+            padding-bottom: 0;
+            margin-bottom: 0;
+            transform: translateY(100%);
+            @include bp('1t2e') {
+                padding-left: 0;
+                padding-right: 0;
+            }
+            @include bp(3) {
+                padding-bottom: 0;
+            }
+        }
+        &.is_open {
+            .modal__dialog {
+                transition: map-get($transition_durations, 'fast') math.div(map-get($transition_durations, 'fast'), 2) transform $transition_easing;
+                transform: translateY(0);
+            }
+        }
+    }
+    &.from_left {
+        .modal__dialog {
+            padding-left: 0;
+            margin-left: 0;
+            transform: translateX(-100%);
+            @include bp(3) {
+                padding-left: 0;
+            }
+        }
+        &.is_open {
+            .modal__dialog {
+                transition: map-get($transition_durations, 'fast') math.div(map-get($transition_durations, 'fast'), 2) transform $transition_easing;
+                transform: translateX(0);
+            }
+        }
+    }
+    &.from_right {
+        .modal__dialog {
+            padding-right: 0;
+            margin-right: 0;
+            transform: translateX(100%);
+            @include bp(3) {
+                padding-right: 0;
+            }
+        }
+        &.is_open {
+            .modal__dialog {
+                transition: map-get($transition_durations, 'fast') math.div(map-get($transition_durations, 'fast'), 2) transform $transition_easing;
+                transform: translateX(0);
+            }
+        }
+    }
+    .modal__dialog {
+        padding: 1rem;
+        margin: auto;
+        position: relative;
+        min-width: 300px;
+        transform: scale(0);
+        transition: map-get($transition_durations, 'fast') transform $transition_easing;
+        @include bp(3) {
+            padding: 2rem;
+            min-width: 450px;
+            max-width: 550px;
+        }
+        .modal__dismiss {
+            @extend %overlay__dismiss;
+            .modal__dismiss__icon {
+                fill: darken(color('white'), 12);
+                transition: fill .3s ease;
+            }
+            &:hover {
+                .modal__dismiss__icon {
+                    fill: darken(color('white'), 20);
+                }
+            }
+        }
+        .modal__content {
+            padding: 1.6em;
+            box-shadow: 0 10px 20px rgba(color('black'), 0.15);
+            width: 100%;
+            max-width: 100%;
+            @include css4 {
+                background-color: var(--color_background);
+            }
+            @include bp(3) {
+                padding: 2em;
+            }
+        }
+        .modal__content__after {
+            @include css4 {
+                background-color: var(--color_background);
+            }
+        }
+        .modal__action {
+            position: sticky;
+            bottom: 0;
+        }
+    }
+    &.is_open {
+        .modal__dialog {
+            transform: scale(1);
+        }
+    }
+}
+
+.modal__cookies {
+    .modal__dialog {
+        width: 900px;
+        max-width: 85%;
+    }
+}

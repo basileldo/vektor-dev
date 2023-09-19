@@ -1,0 +1,164 @@
+table {
+    text-align: left;
+    display: table;
+    vertical-align: top;
+    max-width: 100%;
+    overflow-x: auto;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    -webkit-overflow-scrolling: touch;
+    color: currentColor;
+    @extend %el__spacing;
+    line-height: 1;
+    tr {
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        @include css4 {
+            border-bottom-color: var(--color_border);
+        }
+    }
+    thead {
+        th, td {
+            font-size: 0.8em;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    }
+    tbody {
+        vertical-align: top;
+        tr:last-child {
+            border-bottom-width: 0;
+        }
+    }
+    th, td {
+        padding: 8px 10px;
+        vertical-align: middle;
+    }
+}
+
+@include bps('table.table--edgeless', $breakpoints_common) {
+    thead {
+        tr:first-child th {
+            padding-top: 0;
+        }
+    }
+    tbody {
+        &:first-child tr:first-child td {
+            padding-top: 0;
+        }
+        &:last-child tr:last-child td {
+            padding-bottom: 0;
+        }
+    }
+    th, td {
+        &:first-child {
+            padding-left: 0;
+        }
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+}
+
+@include bps('table.table--spacious', $breakpoints_common) {
+    td {
+        padding: 15px 10px;
+    }
+}
+
+@include bps('table.table--bordered', $breakpoints_common) {
+    th, td {
+        border-width: 1px;
+        border-style: solid;
+        @include css4 {
+            border-color: var(--color_border);
+        }
+    }
+    tr {
+        border-bottom-width: 0;
+    }
+}
+
+@include bps('table.table--bordered-outer', $breakpoints_common) {
+    border-width: 1px;
+    border-style: solid;
+    @include css4 {
+        border-color: var(--color_border);
+    }
+}
+
+@include bps('table.table--responsive', $breakpoints_common) {
+    width: auto;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+@include bps('table.table--card', $breakpoints_common) {
+    background: none;
+    overflow-x: visible;
+    -webkit-overflow-scrolling: auto;
+
+    tr,
+    th,
+    td {
+        background-image: none;
+        background-color: transparent !important;
+    }
+
+    thead {
+        display: none;
+    }
+
+    &,
+    tbody,
+    tr,
+    td {
+        display: block;
+        width: 100%;
+    }
+
+    tr {
+        padding: 1em;
+        margin-bottom: 1em;
+        box-shadow: 0 0.5em 1.5em -0.5em rgba(color('black'), 0.1);
+        border-width: 1px;
+        border-style: solid;
+        @include css4 {
+            border-color: var(--color_border);
+        }
+        &:last-child {
+            margin-bottom: 0;
+            border-bottom-width: 1px;
+        }
+    }
+
+    td {
+        border-width: 0;
+        padding-left: 0;
+        padding-right: 0;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        @include css4 {
+            border-bottom-color: var(--color_border);
+        }
+        &:first-child {
+            padding-top: 0;
+        }
+
+        &:last-child {
+            border-bottom-width: 0;
+            padding-bottom: 0;
+        }
+
+        &::before {
+            content: attr(data-header);
+            position: relative;
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+    }
+}
